@@ -8,6 +8,7 @@
 # Contributor: Christoph Vigano <mail@cvigano.de>
 
 pkgname=st-jt
+_pkgname=st
 pkgver=0.8.3.r23.gb27a383
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X - Patched by Johan Thorén'
@@ -33,12 +34,14 @@ _gitdir=${pkgname%'-git'}
 builddir="$(pwd)"
 
 pkgver() {
-    cd "$_sourcedir"
+    cd $_pkgname
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
-    cd "$_sourcedir"
+    cd $_pkgname
+
+    echo $(pwd)
 
     echo "Adding terminfo patch:"
     patch --forward --strip=0 --input="${srcdir}/terminfo.patch"
