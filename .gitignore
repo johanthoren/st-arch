@@ -1,6 +1,6 @@
 *.tar.xz
 pkg/
-dwm/
+st/
 src/
 config.def.h
 config.h
