@@ -24,7 +24,7 @@ source=(
     README.terminfo.rst
     git://git.suckless.org/st)
 sha256sums=(
-    '99adeb30ea6c71bdaa90b47ed081762a1e39b678123649fabcb98bf65093eaf1'
+    'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
     '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
     'SKIP')
 _gitname="st"
