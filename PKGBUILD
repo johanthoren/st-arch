@@ -36,6 +36,8 @@ source=(
     st-scrollback-mouse-altscreen.diff
     st-scrollback-mouse-increment.diff
     st-gruvbox-dark.diff
+    st-externalpipe.diff
+    st-externalpipe-eternal.diff
     git://git.suckless.org/st)
 sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
@@ -53,6 +55,8 @@ sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '02bb9b65f320a0ee02280435e6a4084eff695569249afb617107af14f3b4adc8'
             'a2176ddee4e1dd15037d9597acd155311f3cd140a8197aef664306ec3ca6cff3'
             '26a124e7e1dc347bde421f36e3dda8e4eb52f6e135002532b5ba39a310432963'
+            '6f68d0f9663c812987112304a50f12cd7e1d1430e140247597574f1396a39461'
+            'd88b0079c568fe5e3b94dc03a981807449957a5cdcfb167a0424509245eb68e1'
             'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -128,6 +132,14 @@ prepare() {
 
     echo "Adding gruvbox-dark patch:"
     patch --forward --strip=1 --input="${srcdir}/st-gruvbox-dark.diff"
+    echo ""
+
+    echo "Adding externalpipe patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-externalpipe.diff"
+    echo ""
+
+    echo "Adding externalpipe-eternal patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-externalpipe-eternal.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
