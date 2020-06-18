@@ -27,6 +27,7 @@ source=(
     st-blinking_cursor.diff
     st-bold-is-not-bright.diff
     st-boxdraw_v2.diff
+    st-clipboard.diff
     git://git.suckless.org/st)
 sha256sums=(
     'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
@@ -36,6 +37,7 @@ sha256sums=(
     '4042801349a1ae0749a815636955c5ad14927a2cd2dec60ac691190c61a9b2b6'
     '077705116b78c53f9c99d81942ede103275d873b87ea3af2e36562935f46b880'
     '32e6a33cad20e11ff799dd8c06aa5ff92b1d8bffa6ec7329aa8b4e8be0cdb7d0'
+    '0af564a96b90e5485029b6ebc2fd1c119c42577cbbc3cfa880e3c77b8a0c8a88'
     'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -75,6 +77,10 @@ prepare() {
 
     echo "Adding boxdraw_v2 patch:"
     patch --forward --strip=1 --input="${srcdir}/st-boxdraw_v2.diff"
+    echo ""
+
+    echo "Adding clipboard patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-clipboard.diff"
     echo ""
 
     # echo "Adding patch personal_config:"

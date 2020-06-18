@@ -1,0 +1,34 @@
+diff --unified --text st/config.def.h st.new/config.def.h
+--- st/config.def.h	2020-06-18 13:52:17.956551620 +0200
++++ st.new/config.def.h	2020-06-18 13:54:27.573691021 +0200
+@@ -197,7 +197,7 @@
+  */
+ static MouseShortcut mshortcuts[] = {
+ 	/* mask                 button   function        argument       release */
+-	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
++	{ XK_ANY_MOD,           Button2, clippaste,      {.i = 0},      1 },
+ 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+ 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+ 	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+@@ -219,8 +219,8 @@
+ 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+ 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+ 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
++	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
++	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ };
+ 
+diff --unified --text st/x.c st.new/x.c
+--- st/x.c	2020-06-18 13:52:17.956551620 +0200
++++ st.new/x.c	2020-06-18 13:53:38.876846743 +0200
+@@ -677,6 +677,7 @@
+ 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
+ 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
+ 		selclear();
++	clipcopy(NULL);
+ }
+ 
+ void
