@@ -38,6 +38,8 @@ source=(
     st-gruvbox-dark.diff
     st-externalpipe.diff
     st-externalpipe-eternal.diff
+    st-externalpipe-signal.diff
+    st-font2.diff
     git://git.suckless.org/st)
 sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
@@ -57,6 +59,8 @@ sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '26a124e7e1dc347bde421f36e3dda8e4eb52f6e135002532b5ba39a310432963'
             '6f68d0f9663c812987112304a50f12cd7e1d1430e140247597574f1396a39461'
             'd88b0079c568fe5e3b94dc03a981807449957a5cdcfb167a0424509245eb68e1'
+            '1524e663c49f85714130d7245ee4f93de6e5335f03c8962703bae2c87e226874'
+            '6f2235476700d991fe3077eab5735721398e085ecd987f3ff03eea284b454db7'
             'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -140,6 +144,14 @@ prepare() {
 
     echo "Adding externalpipe-eternal patch:"
     patch --forward --strip=1 --input="${srcdir}/st-externalpipe-eternal.diff"
+    echo ""
+
+    echo "Adding externalpipe-signal patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-externalpipe-signal.diff"
+    echo ""
+
+    echo "Adding font2 patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-font2.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
