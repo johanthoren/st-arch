@@ -1,11 +1,10 @@
-pkgbase = st-git
-	pkgdesc = A simple virtual terminal emulator for X.
+pkgbase = st-jt
+	pkgdesc = A simple virtual terminal emulator for X - Patched by Johan Thorén
 	pkgver = 0.8.3.r19.g9ba7ecf
 	pkgrel = 1
 	url = https://st.suckless.org
 	arch = i686
 	arch = x86_64
-	arch = armv7h
 	license = MIT
 	makedepends = ncurses
 	makedepends = libxext
@@ -13,12 +12,12 @@ pkgbase = st-git
 	depends = libxft
 	provides = st
 	conflicts = st
-	source = git://git.suckless.org/st
 	source = terminfo.patch
 	source = README.terminfo.rst
-	sha256sums = SKIP
-	sha256sums = SKIP
+	source = git://git.suckless.org/st
+	sha256sums = 99adeb30ea6c71bdaa90b47ed081762a1e39b678123649fabcb98bf65093eaf1
+	sha256sums = 0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2
 	sha256sums = SKIP
 
-pkgname = st-git
+pkgname = st-jt
 

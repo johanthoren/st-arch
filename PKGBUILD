@@ -7,8 +7,8 @@
 # Contributor: Patrick Jackson <PatrickSJackson gmail com>
 # Contributor: Christoph Vigano <mail@cvigano.de>
 
-pkgname=st-git
-pkgver=0.8.3.r19.g9ba7ecf
+pkgname=st-jt
+pkgver=0.8.3.r23.gb27a383
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X - Patched by Johan Thorén'
 arch=('i686' 'x86_64')
@@ -18,27 +18,30 @@ makedepends=('ncurses' 'libxext' 'git')
 provides=(st)
 conflicts=(st)
 url=https://st.suckless.org
-source=(terminfo.patch
-	      README.terminfo.rst
-        "$_pkgname::git+http://git.suckless.org/st")
-sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
-            '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
-            'SKIP')
+source=(
+    terminfo.patch
+    README.terminfo.rst
+    git://git.suckless.org/st)
+sha256sums=(
+    '99adeb30ea6c71bdaa90b47ed081762a1e39b678123649fabcb98bf65093eaf1'
+    '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
+    'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
 _makeopts="--directory=$_sourcedir"
 _gitdir=${pkgname%'-git'}
-builddir=$PWD
+builddir="$(pwd)"
 
 pkgver() {
-    cd "${srcdir}/st"
+    cd "$_sourcedir"
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
+    cd "$_sourcedir"
 
     echo "Adding terminfo patch:"
-    patch --forward --strip=1 --input="${srcdir}/terminfo.patch"
+    patch --forward --strip=0 --input="${srcdir}/terminfo.patch"
     echo ""
 
     # echo "Adding patch personal_config:"
@@ -65,7 +68,7 @@ prepare() {
     # provide an up to date template for the user.
     if [ -e "${builddir}/config.h" ]
     then
-        cp "${builddir}/config.h" "${srcdir}/${_pkgname}/config.h"
+        cp "${builddir}/config.h" "${srcdir}/st/config.h"
     elif [ ! -e "${builddir}/config.def.h" ]
     then
         msg='This package can be configured in config.h. Move the config.def.h '
@@ -74,7 +77,7 @@ prepare() {
         msg+='continue to use default values.'
         warning "$msg"
     fi
-    cp "${srcdir}/${_pkgname}/config.def.h" "${builddir}/config.def.h"
+    cp "${srcdir}/st/config.def.h" "${builddir}/config.def.h"
 }
 
 package() {
