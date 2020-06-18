@@ -1,4 +1,6 @@
-# Maintainer:  Vincent Grande <shoober420@gmail.com>
+# -*- mode: shell-script;-*-
+# Maintainer:  Johan Thorén <johan@thoren.xyz>
+# Contributor: Vincent Grande <shoober420@gmail.com>
 # Contributor: Static_Rocket
 # Contributor: Jose Riha <jose1711 gmail com>
 # Contributor: Sebastian J. Bronner <waschtl@sbronner.com>
@@ -8,25 +10,25 @@
 pkgname=st-git
 pkgver=0.8.3.r19.g9ba7ecf
 pkgrel=1
-pkgdesc='A simple virtual terminal emulator for X.'
-arch=('i686' 'x86_64' 'armv7h')
+pkgdesc='A simple virtual terminal emulator for X - Patched by Johan Thorén'
+arch=('i686' 'x86_64')
 license=('MIT')
-depends=(libxft)
+depends=('libxft')
 makedepends=('ncurses' 'libxext' 'git')
 provides=(st)
 conflicts=(st)
 url=https://st.suckless.org
-source=(git://git.suckless.org/st
-	terminfo.patch
-	README.terminfo.rst)
-sha256sums=(SKIP
-	    SKIP
-            SKIP)
-_gitname="st"	    
+source=(terminfo.patch
+	      README.terminfo.rst
+        "$_pkgname::git+http://git.suckless.org/st")
+sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
+            '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
+            'SKIP')
+_gitname="st"
 _sourcedir="$_gitname"
 _makeopts="--directory=$_sourcedir"
 _gitdir=${pkgname%'-git'}
-_startdir=$PWD
+builddir=$PWD
 
 pkgver() {
     cd "${srcdir}/st"
@@ -35,51 +37,44 @@ pkgver() {
 
 prepare() {
 
-patch --directory="$_sourcedir" --strip=0 < terminfo.patch
+    echo "Adding terminfo patch:"
+    patch --forward --strip=1 --input="${srcdir}/terminfo.patch"
+    echo ""
 
+    # echo "Adding patch personal_config:"
+    # patch --forward --strip=1 --input="${srcdir}/personal_config.diff"
+    # echo ""
 
-	echo 'Applying patches from $_startdir if they exist...'
-	if [ -d "$_startdir/patches" ]; then
-	        for patch in $_startdir/patches/*.diff; do
-                        echo "Applying $patch ..."
-		        patch -p1 -s -i "$patch"
-		done;
-	fi;
-
-  # This package provides a mechanism to provide a custom config.h. Multiple
-  # configuration states are determined by the presence of two files in
-  # $BUILDDIR:
-  #
-  # config.h  config.def.h  state
-  # ========  ============  =====
-  # absent    absent        Initial state. The user receives a message on how
-  #                         to configure this package.
-  # absent    present       The user was previously made aware of the
-  #                         configuration options and has not made any
-  #                         configuration changes. The package is built using
-  #                         default values.
-  # present                 The user has supplied his or her configuration. The
-  #                         file will be copied to $srcdir and used during
-  #                         build.
-  #
-  # After this test, config.def.h is copied from $srcdir to $BUILDDIR to
-  # provide an up to date template for the user.
-  if [ -e "$BUILDDIR/config.h" ]
-  then
-    cp "$BUILDDIR/config.h" "$_sourcedir"
-  elif [ ! -e "$BUILDDIR/config.def.h" ]
-  then
-    msg='This package can be configured in config.h. Copy the config.def.h '
-    msg+='that was just placed into the package directory to config.h and '
-    msg+='modify it to change the configuration. Or just leave it alone to '
-    msg+='continue to use default values.'
-    warning "$msg"
-  fi
-  cp "$_sourcedir/config.def.h" "$BUILDDIR"
-}
-
-build() {
-  make $_makeopts X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+    # This package provides a mechanism to provide a custom config.h. Multiple
+    # configuration states are determined by the presence of two files in
+    # $_pkgname:
+    #
+    # config.h  config.def.h  state
+    # ========  ============  =====
+    # absent    absent        Initial state. The user receives a message on how
+    #                         to configure this package.
+    # absent    present       The user was previously made aware of the
+    #                         configuration options and has not made any
+    #                         configuration changes. The package is built using
+    #                         default values.
+    # present                 The user has supplied his or her configuration. The
+    #                         file will be copied to $srcdir and used during
+    #                         build.
+    #
+    # After this test, config.def.h is copied from $srcdir/src/st to $srcdir to
+    # provide an up to date template for the user.
+    if [ -e "${builddir}/config.h" ]
+    then
+        cp "${builddir}/config.h" "${srcdir}/${_pkgname}/config.h"
+    elif [ ! -e "${builddir}/config.def.h" ]
+    then
+        msg='This package can be configured in config.h. Move the config.def.h '
+        msg+='that was just placed into the package directory to config.h and '
+        msg+='modify it to change the configuration. Or just leave it alone to '
+        msg+='continue to use default values.'
+        warning "$msg"
+    fi
+    cp "${srcdir}/${_pkgname}/config.def.h" "${builddir}/config.def.h"
 }
 
 package() {
