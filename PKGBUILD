@@ -29,6 +29,7 @@ source=(
     st-boxdraw_v2.diff
     st-clipboard.diff
     st-copyurl.diff
+    st-desktopentry.diff
     git://git.suckless.org/st)
 sha256sums=(
     'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
@@ -40,6 +41,7 @@ sha256sums=(
     '32e6a33cad20e11ff799dd8c06aa5ff92b1d8bffa6ec7329aa8b4e8be0cdb7d0'
     '0af564a96b90e5485029b6ebc2fd1c119c42577cbbc3cfa880e3c77b8a0c8a88'
     '7f161af7052301610afd4fb05c972d0d4fea6a9daf3cac1f6479638c9415393d'
+    'f08a2f9bd62541af125a2e276a334451f2ae4519c0af658d4e2f949d0e724b49'
     'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -87,6 +89,10 @@ prepare() {
 
     echo "Adding copyurl patch:"
     patch --forward --strip=1 --input="${srcdir}/st-copyurl.diff"
+    echo ""
+
+    echo "Adding desktopentry patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-desktopentry.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
