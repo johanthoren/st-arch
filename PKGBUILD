@@ -22,10 +22,12 @@ url=https://st.suckless.org
 source=(
     terminfo.patch
     README.terminfo.rst
+    st-alpha.diff
     git://git.suckless.org/st)
 sha256sums=(
     'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
     '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
+    'd6e38fc4b6bce35ef5e35d182f20ceb1c179192c6ffb8c7c6dc5ac5c0b7b6321'
     'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -45,6 +47,10 @@ prepare() {
 
     echo "Adding terminfo patch:"
     patch --forward --strip=0 --input="${srcdir}/terminfo.patch"
+    echo ""
+
+    echo "Adding alpha patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-alpha.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
