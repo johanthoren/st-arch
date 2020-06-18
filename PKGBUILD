@@ -34,23 +34,24 @@ source=(
     st-scrollback.diff
     st-scrollback-mouse.diff
     st-scrollback-mouse-altscreen.diff
+    st-scrollback-mouse-increment.diff
     git://git.suckless.org/st)
-sha256sums=(
-    'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
-    '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
-    'd6e38fc4b6bce35ef5e35d182f20ceb1c179192c6ffb8c7c6dc5ac5c0b7b6321'
-    '156b41ef806bf3579452238729f698827c603768e1a231066a39cb2567aefc73'
-    '4042801349a1ae0749a815636955c5ad14927a2cd2dec60ac691190c61a9b2b6'
-    '077705116b78c53f9c99d81942ede103275d873b87ea3af2e36562935f46b880'
-    '32e6a33cad20e11ff799dd8c06aa5ff92b1d8bffa6ec7329aa8b4e8be0cdb7d0'
-    '0af564a96b90e5485029b6ebc2fd1c119c42577cbbc3cfa880e3c77b8a0c8a88'
-    '7f161af7052301610afd4fb05c972d0d4fea6a9daf3cac1f6479638c9415393d'
-    'f08a2f9bd62541af125a2e276a334451f2ae4519c0af658d4e2f949d0e724b49'
-    '35272705301940b7b9c436f5170080db2b78dd147f579ba1c18cf9fc202ca20a'
-    'e66575c735d715841bc1cbe16b1156dd2938f8005d1e1eee2650bce5b39ab4e0'
-    'c3dbf454db422756af1face0d8cda6e20067969474647fe475ff89272e7934bf'
-    '02bb9b65f320a0ee02280435e6a4084eff695569249afb617107af14f3b4adc8'
-    'SKIP')
+sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
+            '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
+            'd6e38fc4b6bce35ef5e35d182f20ceb1c179192c6ffb8c7c6dc5ac5c0b7b6321'
+            '156b41ef806bf3579452238729f698827c603768e1a231066a39cb2567aefc73'
+            '4042801349a1ae0749a815636955c5ad14927a2cd2dec60ac691190c61a9b2b6'
+            '077705116b78c53f9c99d81942ede103275d873b87ea3af2e36562935f46b880'
+            '32e6a33cad20e11ff799dd8c06aa5ff92b1d8bffa6ec7329aa8b4e8be0cdb7d0'
+            '0af564a96b90e5485029b6ebc2fd1c119c42577cbbc3cfa880e3c77b8a0c8a88'
+            '7f161af7052301610afd4fb05c972d0d4fea6a9daf3cac1f6479638c9415393d'
+            'f08a2f9bd62541af125a2e276a334451f2ae4519c0af658d4e2f949d0e724b49'
+            '35272705301940b7b9c436f5170080db2b78dd147f579ba1c18cf9fc202ca20a'
+            'e66575c735d715841bc1cbe16b1156dd2938f8005d1e1eee2650bce5b39ab4e0'
+            'c3dbf454db422756af1face0d8cda6e20067969474647fe475ff89272e7934bf'
+            '02bb9b65f320a0ee02280435e6a4084eff695569249afb617107af14f3b4adc8'
+            'a2176ddee4e1dd15037d9597acd155311f3cd140a8197aef664306ec3ca6cff3'
+            'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
 _makeopts="--directory=$_sourcedir"
@@ -117,6 +118,10 @@ prepare() {
 
     echo "Adding scrollback-mouse-altscreen patch:"
     patch --forward --strip=1 --input="${srcdir}/st-scrollback-mouse-altscreen.diff"
+    echo ""
+
+    echo "Adding scrollback-mouse-increment patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-scrollback-mouse-increment.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
