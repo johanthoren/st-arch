@@ -35,10 +35,11 @@ source=(
     st-scrollback-mouse.diff
     st-scrollback-mouse-altscreen.diff
     st-scrollback-mouse-increment.diff
+    st-gruvbox-dark.diff
     git://git.suckless.org/st)
 sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
-            'd6e38fc4b6bce35ef5e35d182f20ceb1c179192c6ffb8c7c6dc5ac5c0b7b6321'
+            '3aadf969561512394ad76d0a43df19e13d82458d5f1fb02d3bd28c70f0cacc31'
             '156b41ef806bf3579452238729f698827c603768e1a231066a39cb2567aefc73'
             '4042801349a1ae0749a815636955c5ad14927a2cd2dec60ac691190c61a9b2b6'
             '077705116b78c53f9c99d81942ede103275d873b87ea3af2e36562935f46b880'
@@ -51,6 +52,7 @@ sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             'c3dbf454db422756af1face0d8cda6e20067969474647fe475ff89272e7934bf'
             '02bb9b65f320a0ee02280435e6a4084eff695569249afb617107af14f3b4adc8'
             'a2176ddee4e1dd15037d9597acd155311f3cd140a8197aef664306ec3ca6cff3'
+            '26a124e7e1dc347bde421f36e3dda8e4eb52f6e135002532b5ba39a310432963'
             'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -122,6 +124,10 @@ prepare() {
 
     echo "Adding scrollback-mouse-increment patch:"
     patch --forward --strip=1 --input="${srcdir}/st-scrollback-mouse-increment.diff"
+    echo ""
+
+    echo "Adding gruvbox-dark patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-gruvbox-dark.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
