@@ -25,6 +25,7 @@ source=(
     st-alpha.diff
     st-anysize.diff
     st-blinking_cursor.diff
+    st-bold-is-not-bright.diff
     git://git.suckless.org/st)
 sha256sums=(
     'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
@@ -32,6 +33,7 @@ sha256sums=(
     'd6e38fc4b6bce35ef5e35d182f20ceb1c179192c6ffb8c7c6dc5ac5c0b7b6321'
     '156b41ef806bf3579452238729f698827c603768e1a231066a39cb2567aefc73'
     '4042801349a1ae0749a815636955c5ad14927a2cd2dec60ac691190c61a9b2b6'
+    '077705116b78c53f9c99d81942ede103275d873b87ea3af2e36562935f46b880'
     'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -63,6 +65,10 @@ prepare() {
 
     echo "Adding blinking_cursor patch:"
     patch --forward --strip=1 --input="${srcdir}/st-blinking_cursor.diff"
+    echo ""
+
+    echo "Adding bold-is-not-bright patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-bold-is-not-bright.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
