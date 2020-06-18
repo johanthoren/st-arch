@@ -32,6 +32,7 @@ source=(
     st-desktopentry.diff
     st-disable-bold-italic-fonts.diff
     st-scrollback.diff
+    st-scrollback-mouse.diff
     git://git.suckless.org/st)
 sha256sums=(
     'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
@@ -46,6 +47,7 @@ sha256sums=(
     'f08a2f9bd62541af125a2e276a334451f2ae4519c0af658d4e2f949d0e724b49'
     '35272705301940b7b9c436f5170080db2b78dd147f579ba1c18cf9fc202ca20a'
     'e66575c735d715841bc1cbe16b1156dd2938f8005d1e1eee2650bce5b39ab4e0'
+    'c3dbf454db422756af1face0d8cda6e20067969474647fe475ff89272e7934bf'
     'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -105,6 +107,10 @@ prepare() {
 
     echo "Adding scrollback patch:"
     patch --forward --strip=1 --input="${srcdir}/st-scrollback.diff"
+    echo ""
+
+    echo "Adding scrollback-mouse patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-scrollback-mouse.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
