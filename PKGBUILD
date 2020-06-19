@@ -42,6 +42,7 @@ source=(
     st-font2.diff
     st-vertcenter.diff
     st-workingdir.diff
+    st-xclearwin.diff
     git://git.suckless.org/st)
 sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
@@ -65,6 +66,7 @@ sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '6f2235476700d991fe3077eab5735721398e085ecd987f3ff03eea284b454db7'
             '1293ed865c8369608df0bd05ff4111d2c3a143687d05cee22f30e55f8d768482'
             '272fd68d78161f91f068b0f0180a25313972659b1e39de87bcfd47902a9cea0b'
+            '067f56ea519a338fc66c2ecc21e2d4ee1d2a28dad94dbffcabf892ccd68f936d'
             'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -164,6 +166,10 @@ prepare() {
 
     echo "Adding workingdir patch:"
     patch --forward --strip=1 --input="${srcdir}/st-workingdir.diff"
+    echo ""
+
+    echo "Adding xclearwin patch:"
+    patch --forward --strip=1 --input="${srcdir}/st-xclearwin.diff"
     echo ""
 
     # echo "Adding patch personal_config:"
