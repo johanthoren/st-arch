@@ -9,13 +9,17 @@
 
 pkgname=st-jt
 _pkgname=st
-pkgver=0.8.3.r23.gb27a383
+pkgver=0.8.4.r0.gfa253f0
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X - Patched by Johan Thorén'
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('libxft')
 makedepends=('ncurses' 'libxext' 'git')
+optdepends=('ttf-joypixels'
+            'ttf-nerdfonts-hack-complete-git'
+            'otf-inconsolata-powerline-git'
+            'dmenu')
 provides=(st)
 conflicts=(st)
 url=https://st.suckless.org
@@ -43,6 +47,7 @@ source=(
     st-vertcenter.diff
     st-workingdir.diff
     st-xclearwin.diff
+    personal-preferences.diff
     git://git.suckless.org/st)
 sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
@@ -67,6 +72,7 @@ sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '1293ed865c8369608df0bd05ff4111d2c3a143687d05cee22f30e55f8d768482'
             '272fd68d78161f91f068b0f0180a25313972659b1e39de87bcfd47902a9cea0b'
             '067f56ea519a338fc66c2ecc21e2d4ee1d2a28dad94dbffcabf892ccd68f936d'
+            'SKIP'
             'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -170,6 +176,11 @@ prepare() {
 
     echo "Adding xclearwin patch:"
     patch --forward --strip=1 --input="${srcdir}/st-xclearwin.diff"
+    echo ""
+
+    # Finally, apply my own personal preferences.
+    echo "Adding personal preferences patch:"
+    patch --forward --strip=1 --input="${srcdir}/personal-preferences.diff"
     echo ""
 
     # echo "Adding patch personal_config:"

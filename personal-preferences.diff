@@ -1,0 +1,45 @@
+diff --unified --recursive --text st/config.def.h st.new/config.def.h
+--- st/config.def.h	2020-06-19 11:06:24.341911881 +0200
++++ st.new/config.def.h	2020-06-19 12:07:51.745239968 +0200
+@@ -6,11 +6,12 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "Source Code Pro:size=12:antialias=true:autohint=true";
+ /* Spare fonts */
+ static char *font2[] = {
+-/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
+-/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
++  "JoyPixels:pixelsize=14:antialias=true:autohint=true"
++  "Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true",
++  "Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true",
+ };
+ 
+ 
+@@ -222,17 +223,17 @@
+ 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
+ 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
+ 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
+-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
+-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
++	{ TERMMOD,              XK_Up,          zoom,           {.f = +1} },
++	{ TERMMOD,              XK_Down,        zoom,           {.f = -1} },
+ 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+-	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+-	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+-	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
+-	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
++	{ TERMMOD|ControlMask,  XK_c,           clipcopy,       {.i =  0} },
++	{ TERMMOD|ControlMask,  XK_v,           clippaste,      {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ 	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
+-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
++	{ ControlMask,          XK_u,           kscrollup,      {.i = -1} },
++	{ ControlMask,          XK_d,           kscrolldown,    {.i = -1} },
++	{ XK_NO_MOD,            XK_Page_Up,     kscrollup,      {.i = -1} },
++	{ XK_NO_MOD,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+ };
+ 
+ /*
