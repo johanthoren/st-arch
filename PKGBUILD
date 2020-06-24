@@ -85,107 +85,46 @@ pkgver() {
     git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
+_patch_it() {
+    echo "Adding patch $1"
+    patch --forward --strip=1 --input="${srcdir}/${1}"
+    echo ""
+}
+
 prepare() {
     cd $_pkgname
-
-    echo $(pwd)
 
     echo "Adding terminfo patch:"
     patch --forward --strip=0 --input="${srcdir}/terminfo.patch"
     echo ""
 
-    echo "Adding alpha patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-alpha.diff"
-    echo ""
+    patches=(st-alpha.diff
+             st-anysize.diff
+             st-blinking_cursor.diff
+             st-bold-is-not-bright.diff
+             st-boxdraw_v2.diff
+             st-clipboard.diff
+             st-copyurl.diff
+             st-desktopentry.diff
+             st-disable-bold-italic-fonts.diff
+             st-scrollback.diff
+             st-scrollback-mouse.diff
+             st-scrollback-mouse-altscreen.diff
+             st-scrollback-mouse-increment.diff
+             st-gruvbox-dark.diff
+             st-externalpipe.diff
+             st-externalpipe-eternal.diff
+             st-externalpipe-signal.diff
+             st-font2.diff
+             st-vertcenter.diff
+             st-workingdir.diff
+             st-xclearwin.diff
+             personal-preferences.diff)
 
-    echo "Adding anysize patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-anysize.diff"
-    echo ""
+    for p in "${patches[@]}"; do
+        _patch_it "$p"
+    done
 
-    echo "Adding blinking_cursor patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-blinking_cursor.diff"
-    echo ""
-
-    echo "Adding bold-is-not-bright patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-bold-is-not-bright.diff"
-    echo ""
-
-    echo "Adding boxdraw_v2 patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-boxdraw_v2.diff"
-    echo ""
-
-    echo "Adding clipboard patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-clipboard.diff"
-    echo ""
-
-    echo "Adding copyurl patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-copyurl.diff"
-    echo ""
-
-    echo "Adding desktopentry patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-desktopentry.diff"
-    echo ""
-
-    echo "Adding disable-bold-italic-fonts patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-disable-bold-italic-fonts.diff"
-    echo ""
-
-    echo "Adding scrollback patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-scrollback.diff"
-    echo ""
-
-    echo "Adding scrollback-mouse patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-scrollback-mouse.diff"
-    echo ""
-
-    echo "Adding scrollback-mouse-altscreen patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-scrollback-mouse-altscreen.diff"
-    echo ""
-
-    echo "Adding scrollback-mouse-increment patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-scrollback-mouse-increment.diff"
-    echo ""
-
-    echo "Adding gruvbox-dark patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-gruvbox-dark.diff"
-    echo ""
-
-    echo "Adding externalpipe patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-externalpipe.diff"
-    echo ""
-
-    echo "Adding externalpipe-eternal patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-externalpipe-eternal.diff"
-    echo ""
-
-    echo "Adding externalpipe-signal patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-externalpipe-signal.diff"
-    echo ""
-
-    echo "Adding font2 patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-font2.diff"
-    echo ""
-
-    echo "Adding vertcenter patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-vertcenter.diff"
-    echo ""
-
-    echo "Adding workingdir patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-workingdir.diff"
-    echo ""
-
-    echo "Adding xclearwin patch:"
-    patch --forward --strip=1 --input="${srcdir}/st-xclearwin.diff"
-    echo ""
-
-    # Finally, apply my own personal preferences.
-    echo "Adding personal preferences patch:"
-    patch --forward --strip=1 --input="${srcdir}/personal-preferences.diff"
-    echo ""
-
-    # echo "Adding patch personal_config:"
-    # patch --forward --strip=1 --input="${srcdir}/personal_config.diff"
-    # echo ""
 
     # This package provides a mechanism to provide a custom config.h. Multiple
     # configuration states are determined by the presence of two files in
