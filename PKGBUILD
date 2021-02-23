@@ -47,6 +47,7 @@ source=(
     st-vertcenter.diff
     st-workingdir.diff
     st-xclearwin.diff
+    st-newterm.diff
     personal-preferences.diff
     git://git.suckless.org/st)
 sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
@@ -72,6 +73,7 @@ sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '1293ed865c8369608df0bd05ff4111d2c3a143687d05cee22f30e55f8d768482'
             '272fd68d78161f91f068b0f0180a25313972659b1e39de87bcfd47902a9cea0b'
             '067f56ea519a338fc66c2ecc21e2d4ee1d2a28dad94dbffcabf892ccd68f936d'
+            'SKIP'
             'SKIP'
             'SKIP')
 _gitname="st"
@@ -119,7 +121,9 @@ prepare() {
              st-vertcenter.diff
              st-workingdir.diff
              st-xclearwin.diff
-             personal-preferences.diff)
+             st-newterm.diff
+             personal-preferences.diff
+            )
 
     for p in "${patches[@]}"; do
         _patch_it "$p"
