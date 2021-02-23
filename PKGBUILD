@@ -48,6 +48,7 @@ source=(
     st-workingdir.diff
     st-xclearwin.diff
     st-newterm.diff
+    st-openclipboard.diff
     personal-preferences.diff
     git://git.suckless.org/st)
 sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
@@ -73,8 +74,9 @@ sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
             '1293ed865c8369608df0bd05ff4111d2c3a143687d05cee22f30e55f8d768482'
             '272fd68d78161f91f068b0f0180a25313972659b1e39de87bcfd47902a9cea0b'
             '067f56ea519a338fc66c2ecc21e2d4ee1d2a28dad94dbffcabf892ccd68f936d'
-            'SKIP'
-            'SKIP'
+            '02580822f617df870a3147b5cacbb7a062b12d0a73ba6d9e73ad30c4668f1453'
+            '9d8ba72f9a999dab58cb84b41e97e956de5e92364fd4e7fcc1ef8a12aee9a146'
+            'd9bc4c28783fa5d1ca8c57e4b500b5b1727d82842d26e2e4b30605ec3685f187'
             'SKIP')
 _gitname="st"
 _sourcedir="$_gitname"
@@ -122,6 +124,7 @@ prepare() {
              st-workingdir.diff
              st-xclearwin.diff
              st-newterm.diff
+             st-openclipboard.diff
              personal-preferences.diff
             )
 
