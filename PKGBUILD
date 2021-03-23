@@ -9,7 +9,7 @@
 
 pkgname=st-jt
 _pkgname=st
-pkgver=0.8.4.r2.g4ef0cbd
+pkgver=0.8.4.r3.g9e68fdb
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X - Patched by Johan Thorén'
 arch=('i686' 'x86_64')
