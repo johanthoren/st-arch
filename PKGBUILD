@@ -24,60 +24,14 @@ provides=(st)
 conflicts=(st)
 url=https://st.suckless.org
 source=(
-    terminfo.patch
     README.terminfo.rst
-    st-alpha.diff
-    st-anysize.diff
-    st-blinking_cursor.diff
-    st-bold-is-not-bright.diff
-    st-boxdraw_v2.diff
-    st-clipboard.diff
-    st-copyurl.diff
-    st-desktopentry.diff
-    st-disable-bold-italic-fonts.diff
-    st-scrollback.diff
-    st-scrollback-mouse.diff
-    st-scrollback-mouse-altscreen.diff
-    st-scrollback-mouse-increment.diff
-    st-gruvbox-dark.diff
-    st-externalpipe.diff
-    st-externalpipe-eternal.diff
-    st-externalpipe-signal.diff
-    st-font2.diff
-    st-vertcenter.diff
-    st-workingdir.diff
-    st-xclearwin.diff
-    st-newterm.diff
-    st-openclipboard.diff
-    personal-preferences.diff
+    jt-patches.diff
     git://git.suckless.org/st)
-sha256sums=('f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
-            '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
-            'd7034fd6eb46c36b39ffd5cce1663b4ab7f789d0cd94b83b2e55c5c670dd1472'
-            '156b41ef806bf3579452238729f698827c603768e1a231066a39cb2567aefc73'
-            '4042801349a1ae0749a815636955c5ad14927a2cd2dec60ac691190c61a9b2b6'
-            '077705116b78c53f9c99d81942ede103275d873b87ea3af2e36562935f46b880'
-            '32e6a33cad20e11ff799dd8c06aa5ff92b1d8bffa6ec7329aa8b4e8be0cdb7d0'
-            '0af564a96b90e5485029b6ebc2fd1c119c42577cbbc3cfa880e3c77b8a0c8a88'
-            '7f161af7052301610afd4fb05c972d0d4fea6a9daf3cac1f6479638c9415393d'
-            'f08a2f9bd62541af125a2e276a334451f2ae4519c0af658d4e2f949d0e724b49'
-            '35272705301940b7b9c436f5170080db2b78dd147f579ba1c18cf9fc202ca20a'
-            'e66575c735d715841bc1cbe16b1156dd2938f8005d1e1eee2650bce5b39ab4e0'
-            'c3dbf454db422756af1face0d8cda6e20067969474647fe475ff89272e7934bf'
-            '02bb9b65f320a0ee02280435e6a4084eff695569249afb617107af14f3b4adc8'
-            'a2176ddee4e1dd15037d9597acd155311f3cd140a8197aef664306ec3ca6cff3'
-            '26a124e7e1dc347bde421f36e3dda8e4eb52f6e135002532b5ba39a310432963'
-            '6f68d0f9663c812987112304a50f12cd7e1d1430e140247597574f1396a39461'
-            'd88b0079c568fe5e3b94dc03a981807449957a5cdcfb167a0424509245eb68e1'
-            '1524e663c49f85714130d7245ee4f93de6e5335f03c8962703bae2c87e226874'
-            '6f2235476700d991fe3077eab5735721398e085ecd987f3ff03eea284b454db7'
-            '1293ed865c8369608df0bd05ff4111d2c3a143687d05cee22f30e55f8d768482'
-            '272fd68d78161f91f068b0f0180a25313972659b1e39de87bcfd47902a9cea0b'
-            '067f56ea519a338fc66c2ecc21e2d4ee1d2a28dad94dbffcabf892ccd68f936d'
-            '02580822f617df870a3147b5cacbb7a062b12d0a73ba6d9e73ad30c4668f1453'
-            '9d8ba72f9a999dab58cb84b41e97e956de5e92364fd4e7fcc1ef8a12aee9a146'
-            'd9bc4c28783fa5d1ca8c57e4b500b5b1727d82842d26e2e4b30605ec3685f187'
-            'SKIP')
+sha256sums=(
+    '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
+    '47b246421ca93129210ee972de63f8416a8253592cd85fbd9fffd62539ff51c4'
+    'SKIP'
+)
 _gitname="st"
 _sourcedir="$_gitname"
 _makeopts="--directory=$_sourcedir"
@@ -98,34 +52,8 @@ _patch_it() {
 prepare() {
     cd $_pkgname
 
-    echo "Adding terminfo patch:"
-    patch --forward --strip=0 --input="${srcdir}/terminfo.patch"
-    echo ""
-
-    patches=(st-alpha.diff
-             st-anysize.diff
-             st-blinking_cursor.diff
-             st-bold-is-not-bright.diff
-             st-boxdraw_v2.diff
-             st-clipboard.diff
-             st-copyurl.diff
-             st-desktopentry.diff
-             st-disable-bold-italic-fonts.diff
-             st-scrollback.diff
-             st-scrollback-mouse.diff
-             st-scrollback-mouse-altscreen.diff
-             st-scrollback-mouse-increment.diff
-             st-gruvbox-dark.diff
-             st-externalpipe.diff
-             st-externalpipe-eternal.diff
-             st-externalpipe-signal.diff
-             st-font2.diff
-             st-vertcenter.diff
-             st-workingdir.diff
-             st-xclearwin.diff
-             st-newterm.diff
-             st-openclipboard.diff
-             personal-preferences.diff
+    patches=(
+        jt-patches.diff
             )
 
     for p in "${patches[@]}"; do
