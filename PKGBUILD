@@ -25,6 +25,34 @@ conflicts=(st)
 url=https://st.suckless.org
 source=(
     README.terminfo.rst
+    # jt-patches.diff is a consolidated patch containing the following
+    # patches:
+    #
+    # - alpha
+    # - anysize
+    # - blinking_cursor
+    # - bold-is-not-bright
+    # - boxdraw_v2
+    # - clipboard
+    # - copyurl
+    # - desktopentry
+    # - disable-bold-italic-fonts
+    # - externalpipe-eternal
+    # - externalpipe-signal
+    # - externalpipe
+    # - font2
+    # - gruvbox-dark
+    # - newterm
+    # - openclipboard
+    # - scrollback-mouse-altscreen
+    # - scrollback-mouse-increment
+    # - scrollback-mouse
+    # - scrollback
+    # - vertcenter
+    # - workingdir
+    # - xclearwin
+    #
+    # Some massaging has been done to make these patches play nice together.
     jt-patches.diff
     git://git.suckless.org/st)
 sha256sums=(
