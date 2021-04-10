@@ -596,7 +596,7 @@ index 6f05dce..e6f6362 100644
  
  /*
   * Default columns and rows numbers
-@@ -172,9 +201,12 @@ static uint forcemousemod = ShiftMask;
+@@ -172,17 +201,20 @@ static uint forcemousemod = ShiftMask;
   * Internal mouse shortcuts.
   * Beware that overloading Button1 will disable the selection.
   */
@@ -610,6 +610,15 @@ index 6f05dce..e6f6362 100644
  	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
  	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
  	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+ 	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+ };
+
+ /* Internal keyboard shortcuts. */
+-#define MODKEY Mod1Mask
++#define MODKEY Mod4Mask
+ #define TERMMOD (ControlMask|ShiftMask)
+
+ static Shortcut shortcuts[] = {
 @@ -191,14 +223,19 @@ static Shortcut shortcuts[] = {
  	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
  	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },

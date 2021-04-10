@@ -57,7 +57,7 @@ source=(
     git://git.suckless.org/st)
 sha256sums=(
     '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
-    '47b246421ca93129210ee972de63f8416a8253592cd85fbd9fffd62539ff51c4'
+    '3d032aaa612ccd410c42bc70e219cf65c6f29fe6ad30211fd14ebc93e1c06793'
     'SKIP'
 )
 _gitname="st"
