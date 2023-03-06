@@ -54,7 +54,7 @@ source=(
     #
     # Some massaging has been done to make these patches play nice together.
     jt-patches.diff
-    git://git.suckless.org/st)
+    "git://git.suckless.org/st#commit=9e68fdbcdb06dfa3d23fe3a7a7f7b59e40e1ea2f")
 sha256sums=(
     '0ebcbba881832adf9c98ce9fe7667c851d3cc3345077cb8ebe32702698665be2'
     '3d032aaa612ccd410c42bc70e219cf65c6f29fe6ad30211fd14ebc93e1c06793'
